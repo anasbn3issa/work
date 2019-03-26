@@ -7,6 +7,8 @@
 #include "personage.h"
 
 
+
+
 SDL_Color GetPixel ( SDL_Surface* pSurface , int x , int y)
 {
  SDL_Color color;
@@ -45,7 +47,7 @@ switch (d)
 X+=266;
 p=GetPixel (image,X,Y);
 if (((p.r==255)&&(p.b==255)&&(p.g==255))||((p.r==255)&&(p.b==0)&&(p.g==0)&&(b==0)))
-	return 1;
+	return 1;// il y a donc collision
 else 
 	return 0;
 }
@@ -58,11 +60,39 @@ void initjoueur (joueur *j)
     
     j->position.x =2100 ;
     j->position.y =240 ;
-    j->im = IMG_Load("player1.png");
+    j->im = IMG_Load("Eskanderdroite.png");
 }
 
 
 void afficherjoueur(joueur *j,SDL_Surface *ecran)
 {
  SDL_BlitSurface(j->im, NULL, ecran, &j->position);
+}
+
+
+void animation(joueur *j,SDL_Surface *ecran,SDL_Rect positionFond,SDL_Rect positionim)
+{int i=0;
+while (1)
+{
+for (i=1;i<3;i++)
+{
+switch (i)
+{
+case 1:
+j->im= IMG_Load("Eskanderdroite.png");
+break;
+case 2:
+j->im= IMG_Load("Eskandergauche.png");
+break;
+}
+imageDeFond = SDL_LoadBMP("mapcomplete.bmp");
+SDL_BlitSurface(imageDeFond, NULL, ecran, &positionFond);
+SDL_BlitSurface(j->im, NULL, ecran, &positionim);
+SDL_Delay(100);
+SDL_Flip(ecran);
+
+
+}
+}
+
 }
