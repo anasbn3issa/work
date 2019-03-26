@@ -22,13 +22,12 @@ if (dir==0)
 {for (i=0;i<1;i++)
 {e->position.x +=5;
 e->im= IMG_Load("Eskanderdroite.png");
-SDL_BlitSurface(e->im, NULL, ecran, &e->position);
-SDL_Flip(ecran);SDL_FreeSurface(e->im);}}
+}}
 else if(dir==1)
 {for (i=0;i<1;i++)
 {e->position.x -=5;
 e->im= IMG_Load("Eskandergauche.png");
-SDL_BlitSurface(e->im, NULL, ecran, &e->position);
-SDL_Flip(ecran);SDL_FreeSurface(e->im);}}}
+SDL_litSurface(e->im, NULL, ecran, &e->position);
+}}}
 
                                      
