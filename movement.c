@@ -1,38 +1,63 @@
-void move(SDL_Event event,SDL_Surface *screen,*background,*image2,SDL_Rect position2,backgroundposition)
+#include "player.h"
+#include "map.h"
+
+void initjoueur (joueur *j)
 {
-int done=1;
-while(done)
-{
-    SDL_BlitSurface(background,NULL,screen,&backgroundposition);
-    SDL_BlitSurface(image2,&backgroundposition,screen,&position2);
-    SDL_WaitEvent(&event);
-switch(event.type)
-{
-case SDL_QUIT:
-done = 0;
-break;
-case SDL_KEYDOWN:
-{
-switch(event.key.keysym.sym)
-{
-case SDLK_ESCAPE:
-done=0;
-break;
-case SDLK_UP:
-position2.y-=3.5;
-break;
-case SDLK_DOWN:
-position2.y+=3.5;
-break;
-case SDLK_RIGHT:
-position2.x+=3.5;
-break;
-case SDLK_LEFT:
-position2.x-=3.5;
-break;
+    j->position.x =0;
+    j->position.y =0 ;
+    j->im = IMG_Load("ED.png");
+    
+
 }
+void afficherjoueur(joueur *j,SDL_Surface *ecran)
+{
+ SDL_BlitSurface(j->im, NULL, ecran, &j->position);
 }
-}
-SDL_Flip(ecran);
-}
+void deplacementjoueur (joueur *j,SDL_Event event,int i)
+{
+ if (event.type == SDL_KEYDOWN)
+ {
+   if (event.key.keysym.sym == SDLK_DOWN)
+			{
+                          j->position.y +=1;
+                          
+                          
+                         
+                        }
+  else if(event.key.keysym.sym == SDLK_UP)
+                        {
+                          j->position.y -=1;
+                          
+              
+                        }
+  else if(event.key.keysym.sym == SDLK_RIGHT)
+                        {
+                          j->position.x +=0.5*2;
+                          /*switch(i)
+                          
+                          {case 1:
+                           j->im=IMG_Load("EG.png");
+                           break;
+                           case 2:
+                           j->im=IMG_Load("ED.png");
+                            break;
+                           }*/
+                   
+                          
+                        }
+  else if(event.key.keysym.sym == SDLK_LEFT)
+                        {
+                          j->position.x -=0.5*2;
+                          /*switch(i)
+                          {case 1:
+                           j->im=IMG_Load("REG.png");
+                           break;
+                           case 2:
+                           j->im=IMG_Load("RED.png");
+                            break;
+                           }*/
+                        }
+
+ }
+
 }
