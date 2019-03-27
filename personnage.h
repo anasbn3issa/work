@@ -13,6 +13,5 @@ SDL_Surface *im;
 
 void initjoueur (joueur *j);/*initialisation de joueur*/
 void afficherjoueur(joueur *j,SDL_Surface *ecran);
-int collisionjoueur (SDL_Surface* image,joueur *j,int d,int  b);
+int collisionjoueur (SDL_Surface* image,joueur *j,int d);
 SDL_Color GetPixel ( SDL_Surface* pSurface , int x , int y);
-void animation(joueur *j,SDL_Surface *ecran);
