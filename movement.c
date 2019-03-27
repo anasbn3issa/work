@@ -33,7 +33,7 @@ void deplacementjoueur (joueur *j,SDL_Event event,int i)
   else if(event.key.keysym.sym == SDLK_RIGHT)
                         {
                           j->position.x +=0.5*2;
-                          /*switch(i)
+                          switch(i)
                           
                           {case 1:
                            j->im=IMG_Load("EG.png");
@@ -41,21 +41,21 @@ void deplacementjoueur (joueur *j,SDL_Event event,int i)
                            case 2:
                            j->im=IMG_Load("ED.png");
                             break;
-                           }*/
+                           }
                    
                           
                         }
   else if(event.key.keysym.sym == SDLK_LEFT)
                         {
                           j->position.x -=0.5*2;
-                          /*switch(i)
+                          switch(i)
                           {case 1:
                            j->im=IMG_Load("REG.png");
                            break;
                            case 2:
                            j->im=IMG_Load("RED.png");
                             break;
-                           }*/
+                           }
                         }
 
  }
