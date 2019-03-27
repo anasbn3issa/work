@@ -1,6 +1,6 @@
 #ifndef _MAP_H_INCLUDED
 #define _MAP_H_INCLUDED
-#include "player.h"
+#include "personnage.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL/SDL_image.h>
