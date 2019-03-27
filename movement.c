@@ -1,4 +1,4 @@
-#include "player.h"
+#include "personnage.h"
 #include "map.h"
 
 void initjoueur (joueur *j)
