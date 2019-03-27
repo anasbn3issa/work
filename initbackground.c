@@ -1,14 +1,15 @@
-#include "scrolling.h"
-SDL_Surface *loading(const char *fic)
-{
-SDL_Surface *res;
-SDL_Surface *tmp=SDL_LoadBMP(fic);
-if(tmp==NULL)
-{
-printf("error %s\n",fic);
-exit(-1);
+#include "map.h"
+#include "player.h"
+
+void initialisermap(map *map)
+{	
+	map->image= SDL_LoadBMP("map.bmp");
+	map->position.x = 0;
+        map->position.y = 0;
+	
 }
-res=SDL_DisplayFormat(tmp);
-SDL_FreeSurface(tmp);
-return res;
+
+void affichermap(map *map,SDL_Rect camera,SDL_Surface *ecran)
+{
+SDL_BlitSurface(map->image,&camera, ecran,&map->position);
 }
