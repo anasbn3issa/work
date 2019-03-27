@@ -21,17 +21,17 @@ SDL_Color GetPixel ( SDL_Surface* pSurface , int x , int y)
  return (color) ;
 }
 
-int collisionjoueur (SDL_Surface* image,joueur *j,int d,int b)
+int collisionjoueur (SDL_Surface* image,joueur *j,int d)//on va appeler cette fonction dans le deplacemen
 {
 SDL_Color p;
 float X,Y;
-switch (d)
+switch (d)// pour avoir la direction avec les cordonnees
   {
-   case 1 :
+   case 1 :// premier cas pour le up
      X= j->position.x +16.4;
      Y= j->position.y +9.6;
      break;
-   case 2 :
+   case 2 :// cas pour le down
      X= j->position.x +16.4;
      Y= j->position.y -9.6;
      break;
@@ -46,7 +46,7 @@ switch (d)
   }
 X+=266;
 p=GetPixel (image,X,Y);
-if (((p.r==255)&&(p.b==255)&&(p.g==255))||((p.r==255)&&(p.b==0)&&(p.g==0)&&(b==0)))
+if (((p.r==255)&&(p.b==255)&&(p.g==255)))
 	return 1;// il y a donc collision
 else 
 	return 0;
@@ -70,29 +70,4 @@ void afficherjoueur(joueur *j,SDL_Surface *ecran)
 }
 
 
-void animation(joueur *j,SDL_Surface *ecran,SDL_Rect positionFond,SDL_Rect positionim)
-{int i=0;
-while (1)
-{
-for (i=1;i<3;i++)
-{
-switch (i)
-{
-case 1:
-j->im= IMG_Load("Eskanderdroite.png");
-break;
-case 2:
-j->im= IMG_Load("Eskandergauche.png");
-break;
-}
-imageDeFond = SDL_LoadBMP("mapcomplete.bmp");
-SDL_BlitSurface(imageDeFond, NULL, ecran, &positionFond);
-SDL_BlitSurface(j->im, NULL, ecran, &positionim);
-SDL_Delay(100);
-SDL_Flip(ecran);
 
-
-}
-}
-
-}
