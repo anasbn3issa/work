@@ -7,16 +7,18 @@
 #include<SDL/SDL_mixer.h>
 #include<SDL/SDL_image.h>
 
-struct score{
-	SDL_Surface  *coeur1[50],*coeur2; 
-	SDL_Rect  pos1,pos2,pos3; 
-int nbr_de_vie;
-	
-};typedef  struct score score; 
+typedef struct vie
+{
+	int nb;
+	SDL_Rect position;
+	SDL_Surface *fond1;
+	SDL_Surface *fond2;
+	SDL_Surface *fond3;
+	SDL_Surface *fond4;
+	SDL_Surface *fond5;
+}vie;
 
-void init_score(score *s,char vie[]); 
-void affichage_score0(score *s,SDL_Surface *ecran,int *i);
-void affichage_score1(score *s,SDL_Surface *ecran,int *i);
-void affichage_score2(score *s,SDL_Surface *ecran,int *i);
-void free_score(score *s); 
+void initialiservie(vie *vie);
+void affichervie(vie *vie,SDL_Surface *ecran);
+void free_score(vie *vie); 
 #endif // SCORE_H_INCLUDED
