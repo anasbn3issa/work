@@ -1,5 +1,5 @@
 #include "map.h"
-#include "player.h"
+
 
 void initialisermap(map *map)
 {	
