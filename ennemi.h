@@ -9,7 +9,7 @@ typedef struct ennemi
 }ennemi;
 void initennemi (ennemi *e);
 void afficherennemi (ennemi *e,SDL_Surface *ecran);
-void deplacementennemi(ennemi *e,int dir,SDL_Surface *ecran);
+void deplacementennemi(ennemi *e,int dir,int i,SDL_Surface *ecran);
 
 
 
