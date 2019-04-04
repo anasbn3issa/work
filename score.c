@@ -1,4 +1,12 @@
-#include"score.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
+#include <SDL/SDL_mixer.h>
+#include "vie.h"
+
+
 void initialiservie(vie *vie)
 {
 vie->nb=3;
@@ -10,6 +18,10 @@ vie->fond3 = IMG_Load("vie1/v3.png");
 vie->fond4 = IMG_Load("vie1/v4.png");
 vie->fond5 = IMG_Load("GameOver.png");
 }
+
+
+
+ 
 void affichervie(vie *vie,SDL_Surface *ecran)
 {
 if(vie->nb==3)
@@ -33,15 +45,4 @@ SDL_BlitSurface(vie->fond5,NULL, ecran,&vie->position);
 SDL_Flip(ecran);
 
 }
-}
-void free_score(vie *vie)
-{
-      
-
-	SDL_FreeSurface(vie->fond1);
-	SDL_FreeSurface(vie->fond2);	
-	SDL_FreeSurface(vie->fond3);	
-	SDL_FreeSurface(vie->fond4);	
-	SDL_FreeSurface(vie->fond5);		
-	
 }
