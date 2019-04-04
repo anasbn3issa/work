@@ -11,6 +11,7 @@
 typedef struct map
 {
   SDL_Surface *image;
+  SDL_Surface *collision;
   SDL_Rect position;  
 }map;
 void initialisermap(map *map);
