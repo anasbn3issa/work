@@ -66,10 +66,7 @@ void initjoueur (joueur *j)
      j->im=IMG_Load("EG.png");
 }
 
-void afficherjoueur(joueur *j,SDL_Surface *ecran)
-{
- SDL_BlitSurface(j->im, NULL, ecran, &j->position);
-}
+
 
 
 void deplacementjoueur (joueur *j,SDL_Event event,int i,SDL_Surface *surface)
