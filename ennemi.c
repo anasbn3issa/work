@@ -14,20 +14,24 @@ void initennemi (ennemi *e)
  SDL_BlitSurface(e->im, NULL, ecran, &e->position);
 SDL_FreeSurface(e->im);
 }
-void deplacementennemi(ennemi *e,int dir ,SDL_Surface *ecran)
+void deplacementennemi(ennemi *e,int dir ,int i ,SDL_Surface *ecran)
 {
-int i;
+
 
 if (dir==0)
-{for (i=0;i<1;i++)
+
 {e->position.x +=5;
-e->im= IMG_Load("Eskanderdroite.png");
-}}
+if (i==1) e->im= IMG_Load("Eskanderdroite.png");
+if (i==2) e->im= IMG_Load("Eskandergauche.png");
+SDL_Delay(50);
+}
 else if(dir==1)
-{for (i=0;i<1;i++)
-{e->position.x -=5;
-e->im= IMG_Load("Eskandergauche.png");
-SDL_litSurface(e->im, NULL, ecran, &e->position);
-}}}
+{
+e->position.x -=5;
+if (i==1) e->im= IMG_Load("RED.png");
+if (i==2) e->im= IMG_Load("REG.png");
+SDL_Delay(50);
+}}
+
 
                                      
