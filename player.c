@@ -165,14 +165,6 @@ else printf("rtyuffrtyh.");
 }
 
 
-void initjoueur (joueur *j)
-
-{
-    
-    j->position.x =2100 ;
-    j->position.y =240 ;
-    j->im = IMG_Load("Eskanderdroite.png");
-}
 
 
 void afficherjoueur(joueur *j,SDL_Surface *ecran)
