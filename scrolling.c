@@ -5,8 +5,8 @@
 
 void scrolling (SDL_Rect *camera,joueur j)
 {
-  camera->x = 2*2*2*(j.position).x;
-  camera->y = 2*2*2*(j.position).y;
+  camera->x = 36*(j.position).x;
+  camera->y = 36*(j.position).y;
 camera->h=800;
 camera->w=800;
 }
