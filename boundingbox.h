@@ -1,14 +1,13 @@
 
 #ifndef COLLISION_H_INCLUDED
 #define COLLISION_H_INCLUDED
-#include<SDL/SDL.h>
-#include<SDL/SDL_image.h>
 
-typedef struct AABB //axis aligned bounding box
+/*typedef struct AABB //axis aligned bounding box
 {
 int x;
 int y;
 int w;
 int h;
-}AABB;
+}AABB;*/
+int collision(SDL_Rect box1,SDL_Rect box2);
 #endif // COLLISION_H_INCLUDED
