@@ -4,33 +4,33 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_ttf.h>
-void temps(SDL_Surface *ecran)
+int main()
 
 {
 
     SDL_Surface *texte = NULL;
 
     SDL_Rect position;
-
+	
     SDL_Event event;
-
+SDL_Surface *ecran;
     TTF_Font *police = NULL;
 
     SDL_Color couleurNoire = {0, 0, 0}, couleurBlanche = {255, 255, 255};
 
-    int continuer = 1;
+    int continuer = 1,zirou=0;
 
-    int tempsActuel = 0, tempsPrecedent = 0, compteur = 0;
+    int tempsActuel = 0, tempsPrecedent = 0, compteur = 10,ok=1;
 
     char temps[20] = ""; /* Tableau de char suffisamment grand */
 
-
-   // SDL_Init(SDL_INIT_VIDEO);
+char espc='r';
+    SDL_Init(SDL_INIT_VIDEO);
 
     TTF_Init();
 
 
-   // ecran = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+    ecran = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
 
     SDL_WM_SetCaption("Gestion du texte avec SDL_ttf", NULL);
 
@@ -44,7 +44,7 @@ void temps(SDL_Surface *ecran)
 
     tempsActuel = SDL_GetTicks();
 
-    sprintf(temps, "Temps : %d", compteur);
+    sprintf(temps, "il vous reste : %d", compteur);
 
     texte = TTF_RenderText_Shaded(police, temps, couleurNoire, couleurBlanche);
 
@@ -68,19 +68,21 @@ void temps(SDL_Surface *ecran)
         }
 
 
-       // SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
+        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
 
 
         tempsActuel = SDL_GetTicks();
 
-        if (tempsActuel - tempsPrecedent >= 1000) /* Si 100 ms au moins se sont écoulées */
+        if (tempsActuel - tempsPrecedent >= 1000) /* Si 1sec (1000ms) au moins se sont écoulées */
 
         {
 
-            compteur += 1; /* On rajoute 100 ms au compteur */
-//
-            sprintf(temps, "Temps : %d", compteur); /* On écrit dans la chaîne "temps" le nouveau temps */
-
+           if (ok==1) {compteur --; 
+sprintf(temps, "il vous reste : %d", compteur); }/* On écrit dans la chaîne "temps" le nouveau temps *//* On rajoute 100 ms au compteur */
+if (compteur <1) ok=0;
+            
+if (ok==0)
+            sprintf(temps, "gameove%c",espc); /* On écrit dans la chaîne "temps" le nouveau temps */
             SDL_FreeSurface(texte); /* On supprime la surface précédente */
 
             texte = TTF_RenderText_Shaded(police, temps, couleurNoire, couleurBlanche); /* On écrit la chaîne temps dans la SDL_Surface */
@@ -99,7 +101,7 @@ SDL_Delay(1000-(tempsActuel - tempsPrecedent));
 
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
 
-      //  SDL_Flip(ecran);
+        SDL_Flip(ecran);
 
 
     }
