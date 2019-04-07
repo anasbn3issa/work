@@ -20,8 +20,8 @@ typedef struct //joueur
 void initjoueur (joueur *j);/*initialisation de joueur*/
 void afficherjoueur(joueur *j,SDL_Surface *ecran);
 void deplacementjoueur (joueur *j,SDL_Event event,int i,SDL_Surface *surface);/*deplacement de personage*/
-int collisionjoueur (SDL_Surface* image,joueur *j,int d);
-SDL_Color GetPixel ( SDL_Surface* pSurface , int x , int y);
+int collisionjoueur(SDL_Surface *image,joueur *j, int d);
+  SDL_Color GetPixel ( SDL_Surface* pSurface , int x , int y);
 
 #endif // AFFICHECHAR_H_INCLUDED
 
