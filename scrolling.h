@@ -8,6 +8,6 @@
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_mixer.h>
 void scrolling (SDL_Rect *camera,joueur j);
-
+void initialiserscrolling(SDL_Rect *camera);
 
 #endif // SCROLLING_H_INCLUDED
