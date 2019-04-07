@@ -14,7 +14,7 @@ void initennemi (ennemi *e)
  SDL_BlitSurface(e->im, NULL, ecran, &e->position);
 SDL_FreeSurface(e->im);
 }
-void deplacementennemi(ennemi *e,int dir ,int i ,SDL_Surface *ecran)
+void deplacementennemi(ennemi *e,int dir ,int i )
 {
 
 
