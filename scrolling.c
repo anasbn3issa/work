@@ -12,10 +12,10 @@ camera->w=800;
 }
 void initialiserscrolling(SDL_Rect *camera)
 {
- camera->x=
- camera->y=
- camera->w=
- camera->l=  
+ camera->x=4000;
+ camera->y=6661,026;
+ camera->w=2661,026;
+ camera->l=8000;  
   
   
 }
