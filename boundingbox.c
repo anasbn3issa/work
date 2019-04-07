@@ -7,11 +7,13 @@
 #include "boundingbox.h"
 int collision(SDL_Rect box1,SDL_Rect box2)
 {
-if ((box2.x>=box1.x + box1.w) // trop a droite
-|| (box2.x += box2.w <= box1.x)//trop a gauche
-|| (box2.y >= box1.y + box1.h)// trop en bas
-|| (box2.y + box2.h <= box1.h))//trop en haut
+if(box1.y>=box2.y+box2.h)
 return 0;
-else
+if (box1.x>=box2.x+box2.w-30)
+return 0;
+if (box1.y+box1.h<=box2.y)
+return 0;
+if (box1.x+box1.w-30<=box2.x)
+return 0;
 return 1;
 }
