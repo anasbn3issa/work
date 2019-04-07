@@ -10,3 +10,12 @@ void scrolling (SDL_Rect *camera,joueur j)
 camera->h=800;
 camera->w=800;
 }
+void initialiserscrolling(SDL_Rect *camera)
+{
+ camera->x=
+ camera->y=
+ camera->w=
+ camera->l=  
+  
+  
+}
