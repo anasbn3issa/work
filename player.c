@@ -3,6 +3,7 @@
 
 
 
+
 SDL_Color GetPixel ( SDL_Surface* pSurface , int x , int y)
 {
  SDL_Color color;
@@ -14,9 +15,6 @@ SDL_Color GetPixel ( SDL_Surface* pSurface , int x , int y)
  SDL_GetRGB(col ,pSurface->format , &color.r , &color.g , &color.b);
  return (color) ;
 }
-
-
-
 int collisionjoueur(SDL_Surface *image,joueur *j, int d)
 { SDL_Color color[3];
 int i;
@@ -51,15 +49,14 @@ if ((color[i].r==255 && color[i].g==0 && color[i].b==0)) return 1; else return 0
 }
 }
 
-
 void initjoueur (joueur *j)
 
 {
     
-    j->position.x =40;//40;
-    j->position.y =60;//55 ;
-    j->position.h =115;
-    j->position.w =400;
+    j->position.x =100;//40;
+    j->position.y =220;//55 ;
+    j->position.h =120;
+    j->position.w =37;
      j->im=IMG_Load("EG.png");
 }
 
@@ -68,22 +65,36 @@ void afficherjoueur(joueur *j,SDL_Surface *ecran)
  SDL_BlitSurface(j->im, NULL, ecran, &j->position);
 }
 
-
-void deplacementjoueur (joueur *j,SDL_Event event,int i,SDL_Surface *surface)
+void animation_ennemi (ennemi *e, int d, int i)
 {
-int d=0;
- if (event.type == SDL_KEYDOWN)
- {
-   if (event.key.keysym.sym == SDLK_DOWN)
-		 {
+switch(d)
+{case 0: 
+		switch(i)
+                          
+                          {case 1:
+                          e->im=IMG_Load("EG.png");
+                           break;
+                           case 2:
+                           e->im=IMG_Load("ED.png");
+                            break;
+                           } break;
+case 1: 
+		switch(i)
+                          
+                          {case 1:
+                           e->im=IMG_Load("REG.png");
+                           break;
+                           case 2:
+                           e->im=IMG_Load("RED.png");
+                            break;}  break;
+}
+}
 
-				
-                         d=2;
-				if(!collisionjoueur(surface,j,d))
-			{
-				j->position.y +=1;
-
- 				switch(i)
+void animation(joueur *j, int d, int i)
+{
+switch(d)
+{case 1: //down
+		switch(i)
                           
                           {case 1:
                            j->im=IMG_Load("EG.png");
@@ -91,21 +102,9 @@ int d=0;
                            case 2:
                            j->im=IMG_Load("ED.png");
                             break;
-                           } 
-
-			} else ("stop down\n");
-                          
-                         
-                 }
-  else if(event.key.keysym.sym == SDLK_UP)
-                        {
-    d=3;
-				if(!collisionjoueur(surface,j,d))
-				{
-                         
-				j->position.y -=1;
-
- 				switch(i)
+                           } break;
+case 2: //up
+		switch(i)
                           
                           {case 1:
                            j->im=IMG_Load("EG.png");
@@ -113,21 +112,9 @@ int d=0;
                            case 2:
                            j->im=IMG_Load("ED.png");
                             break;
-                           } }
-
-                   
-                          
-              
-                        }
-  else if(event.key.keysym.sym == SDLK_RIGHT)
-                        {
-
-    d=1;
-				if(!collisionjoueur(surface,j,d))				
-			{
-                          j->position.x +=1;
-				
-                          switch(i)
+                           } break;
+case 3: //right
+		switch(i)
                           
                           {case 1:
                            j->im=IMG_Load("EG.png");
@@ -135,28 +122,75 @@ int d=0;
                            case 2:
                            j->im=IMG_Load("ED.png");
                             break;
-                           }}
-                   
+                           } break;
+case 4://left
+		switch(i)
                           
-                        }
-  else if(event.key.keysym.sym == SDLK_LEFT)
-                        {
-    d=4;
-				if(!collisionjoueur(surface,j,d))
-				{
-                          j->position.x -=1;
-				
-                          switch(i)
                           {case 1:
-                           j->im=IMG_Load("RED.png");
-                           break;
-                           case 2:
                            j->im=IMG_Load("REG.png");
+                           break;
+                           case 2:
+                           j->im=IMG_Load("RED.png");
                             break;
-                           }}
-                        }
-
- }
+                           } break;
+}
 
 }
+
+void deplacementjoueur (joueur *j,SDL_Event event,SDL_Surface *surface,int i)
+{
+int d=0;
+ 
+if (event.type == SDL_KEYDOWN)
+	{
+				
+		switch (event.key.keysym.sym)
+
+			{
+	case SDLK_DOWN: 	
+			d=2;
+				if(!collisionjoueur(surface,j,d)) 
+		{
+			j->position.y +=2;
+				
+			animation(j, d,i);
+
+		}
+					 else printf("stop down\n");break;
+
+	case SDLK_UP: 
+			d=3;
+				if(!collisionjoueur(surface,j,d))
+				
+		{
+			j->position.y -=2;
+
+				 animation(j, d,i);
+
+		} 			else printf("stop up\n"); break;
+
+	case SDLK_RIGHT: 
+			 d=1;
+
+				if(!collisionjoueur(surface,j,d))
+		{
+			j->position.x +=2;
+                          
+                          animation(j, d,i);
+
+		}
+					else printf("stop right\n"); break;
+
+	case SDLK_LEFT :  
+			d=4;
+
+			if(!collisionjoueur(surface,j,d))
+
+		{	j->position.x -=2;
+				
+			animation(j, d,i);
+
+		}			 else printf("stop left\n");break;
+}
+}}
 
